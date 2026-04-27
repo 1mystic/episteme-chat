@@ -1,0 +1,1 @@
+What exactly is the working of a classificaiton model that gives probabilistic outputs, like log loss or cross entropy multi logloss fucnitons, why that specifically, why only sigmoid fro lgo reg, need to make sense of it deeply
