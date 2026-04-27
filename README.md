@@ -1,6 +1,6 @@
 <div align="center">
 
-<!-- REPLACE WITH CANVA: Full-width banner — deep amber-on-void wordmark "EPISTEME" in Space Grotesk 600, 
+<!-- REPLACE WITH CANVA: Full-width banner : deep amber-on-void wordmark "EPISTEME" in Space Grotesk 600, 
      with a single amber phosphor glow behind the letter E. Dimensions: 1280×400px -->
 
 ```
@@ -18,7 +18,7 @@
 ╚══════════════════════════════════════════════════════════════════════╝
 ```
 
-**AI that refuses to answer your questions —**  
+**AI that refuses to answer your questions :**  
 **and instead helps you answer them yourself.**
 
 <br/>
@@ -42,8 +42,8 @@
 
 | № | Section |
 |---|---------|
-| 01 | [The Problem — Why This Exists](#01--the-problem) |
-| 02 | [The User — Who We're Building For](#02--the-user) |
+| 01 | [The Problem : Why This Exists](#01--the-problem) |
+| 02 | [The User : Who We're Building For](#02--the-user) |
 | 03 | [What Episteme Does](#03--what-episteme-does) |
 | 04 | [The 7 Research-Grade Algorithms](#04--the-7-algorithms) |
 | 05 | [System Architecture](#05--system-architecture) |
@@ -63,21 +63,21 @@
 
 ## `01 // THE PROBLEM`
 
-<!-- REPLACE WITH CANVA: Two-column split card — left side: dark void background with large red ✗ 
+<!-- REPLACE WITH CANVA: Two-column split card : left side: dark void background with large red ✗ 
      and text "ANSWER-SEEKING"; right side: amber glow with ✓ and "UNDERSTANDING". 
      Amber divider line between them. Dimensions: 1280×400px -->
 
 Every AI tool built in 2026 is optimising for the same thing: **user satisfaction**.
 
-Fast answers. Instant gratification. The question resolved in seconds. And it works — users are happy, session lengths are short, feedback scores are high.
+Fast answers. Instant gratification. The question resolved in seconds. And it works : users are happy, session lengths are short, feedback scores are high.
 
 But user satisfaction and user growth are **mathematically opposite objectives.**
 
-When a learner receives an instant answer, the productive discomfort that drives genuine understanding is permanently eliminated. The struggle — the moment of cognitive friction where a concept clicks — never happens. The learner pattern-matches the answer. They cannot reconstruct it. They cannot apply it under novel conditions. They cannot explain *why* it is true.
+When a learner receives an instant answer, the productive discomfort that drives genuine understanding is permanently eliminated. The struggle : the moment of cognitive friction where a concept clicks : never happens. The learner pattern-matches the answer. They cannot reconstruct it. They cannot apply it under novel conditions. They cannot explain *why* it is true.
 
 This is not a new problem. It is the Socratic problem, 2,500 years old:
 
-> *"I know that I know nothing"* — the beginning of genuine understanding.
+> *"I know that I know nothing"* : the beginning of genuine understanding.
 
 What is new is that AI has made the problem catastrophically worse. The most powerful answer machines in history are now available to every student with a phone. And the result is a generation that can retrieve any fact but cannot reason about any of them.
 
@@ -87,7 +87,7 @@ What is new is that AI has made the problem catastrophically worse. The most pow
 
 ## `02 // THE USER`
 
-<!-- REPLACE WITH CANVA: Profile card in amber-terminal style — dark card with amber accent bar on left,
+<!-- REPLACE WITH CANVA: Profile card in amber-terminal style : dark card with amber accent bar on left,
      avatar silhouette, name "Rohan", key stats in monospace. Dimensions: 800×500px -->
 
 ```
@@ -110,7 +110,7 @@ Rohan is not a hypothetical. He is every student who:
 - Can recite the Bayes theorem formula but cannot apply it to a real inference problem
 - Has prepared for 6 months and still fails the ML interview because they pattern-matched, not reasoned
 
-**The population:** 50 million+ self-learners in India — students preparing for GATE, placement interviews, and career transitions in STEM — who have internet access but no mentor, no coaching institute, no one to ask "but *why* do you think that?"
+**The population:** 50 million+ self-learners in India : students preparing for GATE, placement interviews, and career transitions in STEM : who have internet access but no mentor, no coaching institute, no one to ask "but *why* do you think that?"
 
 **The number:** In an internal IIT Madras DS cohort survey (2025), 72% of students reported they could explain ML algorithms but could not reason about when they fail or why they are chosen for a given problem.
 
@@ -124,13 +124,13 @@ This is not an access problem. Every student has Claude, Gemini, Perplexity. **T
      Each step is a dark card with amber number and monospace label.
      Connecting lines in amber between cards. Dimensions: 1280×300px -->
 
-Episteme runs a formal **Socratic dialogue** — a structured, turn-by-turn conversation where the AI never directly answers your question. Instead, it:
+Episteme runs a formal **Socratic dialogue** : a structured, turn-by-turn conversation where the AI never directly answers your question. Instead, it:
 
 ```
 STEP 01 → CLASSIFY        Your question is analysed for cognitive depth
                           SURFACE · CONCEPTUAL · ANALYTICAL · SYNTHESIS
 
-STEP 02 → PROBE           "Before I respond — what do you already think?"
+STEP 02 → PROBE           "Before I respond : what do you already think?"
                           Turn 1 always begins here. No exceptions.
 
 STEP 03 → TRACK           Every response is scored. Bayesian mastery 
@@ -150,14 +150,14 @@ STEP 05 → SYNTHESISE      After 4-6 turns: an insight card.
 ```
 USER      → "What is overfitting?"
 
-EPISTEME  → "Before I explain — what do you think happens to a model
+EPISTEME  → "Before I explain : what do you think happens to a model
               that memorises every detail of its training data?
               What would go wrong when it sees new data?"
 
 USER      → "I guess it would get the training answers right
               but fail on new questions?"
 
-EPISTEME  → "Exactly — that instinct is right. Now push it further:
+EPISTEME  → "Exactly : that instinct is right. Now push it further:
               if the model memorised noise in the training data,
               what does that tell you about what it actually learned?
               What is it that the model failed to find?"
@@ -166,7 +166,7 @@ USER      → "It found patterns that were specific to the training
               set but not real patterns?"
 
 EPISTEME  → "You just described the bias-variance tradeoff without
-              naming it. The model has low bias — it fits perfectly —
+              naming it. The model has low bias : it fits perfectly :
               but very high variance. Can you now tell me what the
               opposite failure looks like? What if the model
               is too simple?"
@@ -175,7 +175,7 @@ EPISTEME  → "You just described the bias-variance tradeoff without
               [ CLARITY: 31 → 58 ]
 ```
 
-No other AI tool produces this exchange. Not because it is technically difficult to generate — but because every other tool is incentivised to give you the answer on turn one.
+No other AI tool produces this exchange. Not because it is technically difficult to generate : but because every other tool is incentivised to give you the answer on turn one.
 
 ---
 
@@ -186,7 +186,7 @@ No other AI tool produces this exchange. Not because it is technically difficult
      Pipeline flows left to right: USER INPUT → RDSE → BGDC → SDSM → SUV → CBKT-CS → CPGAB → EGP → CLAUDE
      Dimensions: 1280×400px -->
 
-Episteme's intelligence is not in its prompts. It is in **7 deterministic algorithms** that run alongside every conversation — classifying, scoring, tracking, and steering the dialogue before Claude ever speaks.
+Episteme's intelligence is not in its prompts. It is in **7 deterministic algorithms** that run alongside every conversation : classifying, scoring, tracking, and steering the dialogue before Claude ever speaks.
 
 ```
 USER MESSAGE RECEIVED
@@ -237,7 +237,7 @@ USER MESSAGE RECEIVED
   CLAUDE CALL (with enriched system prompt containing all above)
 ```
 
-### `// RDSE` — Response Depth Signal Extractor
+### `// RDSE` : Response Depth Signal Extractor
 
 A **deterministic, 6-feature scoring function** that converts raw text into a quality signal `q ∈ [0,1]` with zero API calls and sub-millisecond latency. Feeds every downstream algorithm.
 
@@ -250,9 +250,9 @@ A **deterministic, 6-feature scoring function** that converts raw text into a qu
 | Structure Score | 10% | Multi-sentence, multi-clause organised responses |
 | Question-Back Ratio | 5% | Inverted: asking instead of answering penalised |
 
-### `// BGDC` — Bloom-Grounded Depth Classifier
+### `// BGDC` : Bloom-Grounded Depth Classifier
 
-Maps every question to one of four cognitive depth levels using **3-signal fusion** — no single signal is trusted alone.
+Maps every question to one of four cognitive depth levels using **3-signal fusion** : no single signal is trusted alone.
 
 ```
 Signal 1: Keyword patterns   → weight 0.30  (fast, deterministic)
@@ -267,9 +267,9 @@ SYNTHESIS   → "When would you use X?"  "Design X."
 
 *Grounded in: LLM zero-shot Bloom's classification achieving 0.72–0.73 F1 (arXiv 2511.10903, Nov 2025)*
 
-### `// SDSM` — Socratic Dialogue State Machine
+### `// SDSM` : Socratic Dialogue State Machine
 
-A **7-state formal automaton** with deterministic transition logic. Claude does not decide what kind of response to give — the state machine decides. Claude executes the instruction for the current state.
+A **7-state formal automaton** with deterministic transition logic. Claude does not decide what kind of response to give : the state machine decides. Claude executes the instruction for the current state.
 
 ```
 States:    PROBE → DEEPEN → REDIRECT → SCAFFOLD → RECTIFY → CONSOLIDATE → COMPLETE
@@ -284,9 +284,9 @@ Transitions governed by:
 
 *Grounded in: SocraticLLM REVIEW→HEURISTIC→RECTIFY→SUMMARIZE structure (CIKM 2024)*
 
-### `// CBKT-CS` — Conversational Bayesian Knowledge Tracing
+### `// CBKT-CS` : Conversational Bayesian Knowledge Tracing
 
-Adapts **Bayesian Knowledge Tracing** — the gold standard in educational data mining — from binary quiz outcomes to continuous conversational quality signals.
+Adapts **Bayesian Knowledge Tracing** : the gold standard in educational data mining : from binary quiz outcomes to continuous conversational quality signals.
 
 ```
 Standard BKT update (binary):
@@ -304,7 +304,7 @@ Domain-calibrated priors:
   Economics   → P(L₀)=0.25, P(T)=0.14, P(S)=0.08, P(G)=0.10
 ```
 
-### `// SUV` — Semantic Understanding Verifier
+### `// SUV` : Semantic Understanding Verifier
 
 Per-turn misconception detection using Claude as a semantic scorer. Fires a separate, lightweight API call after each user response to assess semantic accuracy independently of response quality.
 
@@ -317,9 +317,9 @@ Per-turn misconception detection using Claude as a semantic scorer. Fires a sepa
 }
 ```
 
-When `semanticAccuracy < 0.25` and `qualityScore > 0.3` — the user is confidently wrong — SDSM transitions to **RECTIFY** state. The misconception is passed to Claude's system prompt. Claude addresses it without saying "you're wrong."
+When `semanticAccuracy < 0.25` and `qualityScore > 0.3` : the user is confidently wrong : SDSM transitions to **RECTIFY** state. The misconception is passed to Claude's system prompt. Claude addresses it without saying "you're wrong."
 
-### `// CPGAB` — Concept Prerequisite Graph Auto-Builder
+### `// CPGAB` : Concept Prerequisite Graph Auto-Builder
 
 Builds a **directed prerequisite DAG** for every concept encountered in a session. Uses Claude to extract prerequisite and adjacent concept relationships, stores them in Supabase, and computes betweenness centrality to identify which concept unlocks the most others.
 
@@ -332,7 +332,7 @@ Builds a **directed prerequisite DAG** for every concept encountered in a sessio
 
 *Grounded in: ACE methodology achieving F1 71.92 for prerequisite detection (JEDM 2025)*
 
-### `// EGP` — Ebbinghaus Gap Prioritizer
+### `// EGP` : Ebbinghaus Gap Prioritizer
 
 Ranks unexplored gap concepts by **urgency** using the Ebbinghaus forgetting curve and SM-2 spaced repetition scheduling.
 
@@ -454,23 +454,23 @@ The answer is no. Here is why, precisely.
 
 | Dimension | Prompt-Engineered | Fine-Tuned Model | **Episteme** |
 |---|---|---|---|
-| Turn strategy | Hopes LLM stays Socratic | Fixed trained behaviour | **7-state SDSM — deterministic** |
+| Turn strategy | Hopes LLM stays Socratic | Fixed trained behaviour | **7-state SDSM : deterministic** |
 | Depth classification | LLM judgement | Model output | **3-signal BGDC fusion** |
 | Mastery tracking | None | None | **BKT updated per turn, persisted** |
 | Misconception handling | Hopes LLM notices | May catch common ones | **SUV runs every turn, RECTIFY state fires** |
 | Knowledge graph | None | None | **Prerequisite DAG auto-built per session** |
 | Gap prioritisation | Alphabetical or random | None | **Ebbinghaus decay + SM-2 scheduling** |
-| Breaks under pressure | Yes — users can push LLM to answer | No — but inflexible | **No — SDSM enforces, Claude executes** |
+| Breaks under pressure | Yes : users can push LLM to answer | No : but inflexible | **No : SDSM enforces, Claude executes** |
 | Personalised memory | Session only | None | **Metacognitive agent + learner fingerprint** |
 | Export | None | None | **MD · HTML/PDF · Notion API** |
 
 **The fundamental difference:**
 
-A prompt-engineered Socratic AI tells Claude to "be Socratic." Claude tries. When the user says "just tell me the answer," Claude often complies — because it is trained to be helpful, and the user's request is a strong signal.
+A prompt-engineered Socratic AI tells Claude to "be Socratic." Claude tries. When the user says "just tell me the answer," Claude often complies : because it is trained to be helpful, and the user's request is a strong signal.
 
-Episteme's SDSM determines the *strategy* before Claude speaks. Claude does not decide whether to probe or answer — it executes the instruction for the current state. The state machine cannot be talked out of its decision. Only a CONSOLIDATE or COMPLETE state unlocks the full answer, and those states are triggered by turn count and quality thresholds, not by user request.
+Episteme's SDSM determines the *strategy* before Claude speaks. Claude does not decide whether to probe or answer : it executes the instruction for the current state. The state machine cannot be talked out of its decision. Only a CONSOLIDATE or COMPLETE state unlocks the full answer, and those states are triggered by turn count and quality thresholds, not by user request.
 
-**A fine-tuned model** would have fixed Socratic behaviour baked into weights — but would lose the real-time mastery tracking, the prerequisite graph, the Ebbinghaus gap prioritisation, and the metacognitive agent. These require runtime data and algorithm execution that no static model can provide.
+**A fine-tuned model** would have fixed Socratic behaviour baked into weights : but would lose the real-time mastery tracking, the prerequisite graph, the Ebbinghaus gap prioritisation, and the metacognitive agent. These require runtime data and algorithm execution that no static model can provide.
 
 ---
 
@@ -553,15 +553,15 @@ CREATE TABLE messages (
   created_at    TIMESTAMPTZ DEFAULT NOW()
 );
 
--- Concept mastery — BKT state persisted per concept per session
+-- Concept mastery : BKT state persisted per concept per session
 CREATE TABLE concepts (
   id            UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
   session_id    UUID REFERENCES sessions(id) ON DELETE CASCADE,
   name          TEXT NOT NULL,
   depth_reached TEXT CHECK (depth_reached IN ('SURFACE','CONCEPTUAL','ANALYTICAL','SYNTHESIS')),
   clarity_score INT DEFAULT 0,
-  bkt_pL        FLOAT DEFAULT 0.20,   -- P(knows) — core mastery estimate
-  bkt_pT        FLOAT DEFAULT 0.12,   -- P(transition) — learning rate
+  bkt_pL        FLOAT DEFAULT 0.20,   -- P(knows) : core mastery estimate
+  bkt_pT        FLOAT DEFAULT 0.12,   -- P(transition) : learning rate
   bkt_pS        FLOAT DEFAULT 0.10,   -- slip parameter
   bkt_pG        FLOAT DEFAULT 0.08,   -- guess parameter
   created_at    TIMESTAMPTZ DEFAULT NOW()
@@ -654,7 +654,7 @@ The core route. Runs the full 7-algorithm pipeline, then streams a Claude respon
 
 // Streaming Response (SSE)
 data: {"text": "That instinct is "}
-data: {"text": "right — now push it"}
+data: {"text": "right : now push it"}
 data: {"text": " further..."}
 data: {"done": true, "clarityScore": 43, "nextState": "DEEPEN", "canGenerateInsight": false}
 ```
@@ -712,19 +712,19 @@ Generates a structured learning roadmap in three formats.
      Right: Notion card with amber accent border (highlighted as premium).
      Dimensions: 1280×300px -->
 
-At session end, Episteme generates a **personalised learning roadmap** — not a transcript, but a structured document with:
+At session end, Episteme generates a **personalised learning roadmap** : not a transcript, but a structured document with:
 
-- **What you now understand** — specific to your reasoning, not a generic definition
-- **Clarity score trajectory** — your BKT mastery curve across the session
-- **Bloom's depth distribution** — what percentage of your thinking was SURFACE vs. ANALYTICAL
-- **Priority gaps** — ranked by Ebbinghaus urgency, not alphabetically
-- **Prerequisite threads** — which concepts you need before you can go deeper
-- **30-day study plan** — using SM-2 review intervals personalised to your forgetting rate
-- **Next session starter** — the exact question the metacognitive agent prepared for you
+- **What you now understand** : specific to your reasoning, not a generic definition
+- **Clarity score trajectory** : your BKT mastery curve across the session
+- **Bloom's depth distribution** : what percentage of your thinking was SURFACE vs. ANALYTICAL
+- **Priority gaps** : ranked by Ebbinghaus urgency, not alphabetically
+- **Prerequisite threads** : which concepts you need before you can go deeper
+- **30-day study plan** : using SM-2 review intervals personalised to your forgetting rate
+- **Next session starter** : the exact question the metacognitive agent prepared for you
 
 ### Notion Integration
 
-Uses the **Notion API 2026-03-11** markdown endpoint — a single `POST /v1/pages` call with the full markdown document. No block parsing, no `notion-to-md` library.
+Uses the **Notion API 2026-03-11** markdown endpoint : a single `POST /v1/pages` call with the full markdown document. No block parsing, no `notion-to-md` library.
 
 ```
 User provides: Notion integration token + parent page ID
@@ -736,7 +736,7 @@ Result: Your learning history lives in your own Notion workspace
 
 ## `11 // THE METACOGNITIVE AGENT`
 
-<!-- REPLACE WITH CANVA: Agent diagram — circular flow showing: 
+<!-- REPLACE WITH CANVA: Agent diagram : circular flow showing: 
      SESSION ENDS → Metacognitive Agent reads transcript → 
      Generates learner profile → Stores in Supabase → 
      Next session starts with personalised probe.
@@ -752,8 +752,8 @@ It reads:
 
 It produces:
 - A precise learner profile: strength areas, blind spots, learning trajectory
-- The exact first probe question for the next session — referencing something the user actually said
-- A metacognitive note: *"reasons causally but avoids mathematical framing — push toward quantitative intuition"*
+- The exact first probe question for the next session : referencing something the user actually said
+- A metacognitive note: *"reasons causally but avoids mathematical framing : push toward quantitative intuition"*
 
 **What the user sees on the next visit:**
 
@@ -766,7 +766,7 @@ It produces:
 │  "Last time you said overfitting happens when a model  │
 │   memorises noise. Here's a harder version: if you     │
 │   added 10,000 more training examples, would the       │
-│   overfitting get better or worse — and why?"          │
+│   overfitting get better or worse : and why?"          │
 │                                                        │
 │  Recommended concept: bias-variance tradeoff           │
 │  Recommended depth:   ANALYTICAL                       │
@@ -775,7 +775,7 @@ It produces:
 └────────────────────────────────────────────────────────┘
 ```
 
-This is not a transcript summary. The agent reasons about the user's thinking — what they got right, what they avoided, what a good mentor would push on next — and prepares a session that begins exactly where their understanding broke down.
+This is not a transcript summary. The agent reasons about the user's thinking : what they got right, what they avoided, what a good mentor would push on next : and prepares a session that begins exactly where their understanding broke down.
 
 ---
 
@@ -785,7 +785,7 @@ Episteme is one of the few AI tools built with an explicit **anti-dependency des
 
 ### The Independent Reasoning Streak
 
-Every time a user answers a Socratic probe *before* Episteme asks it — demonstrating they anticipated the question — the system increments an Independent Reasoning Streak counter.
+Every time a user answers a Socratic probe *before* Episteme asks it : demonstrating they anticipated the question : the system increments an Independent Reasoning Streak counter.
 
 At 5 consecutive streaks, the UI shows:
 
@@ -797,18 +797,18 @@ This is the metric the product optimises for. Not session length. Not return rat
 
 | Risk | Safeguard |
 |---|---|
-| Frustration trap — too much Socratic pressure | Confusion detection via RDSE → SCAFFOLD state provides footholds |
-| Epistemic harm — wrong Socratic framing | SUV detects misconceptions per turn · RECTIFY state fires |
+| Frustration trap : too much Socratic pressure | Confusion detection via RDSE → SCAFFOLD state provides footholds |
+| Epistemic harm : wrong Socratic framing | SUV detects misconceptions per turn · RECTIFY state fires |
 | Dependency on AI for learning | Independent Reasoning Streak counter · tool designed to be outgrown |
-| Cultural bias of Socratic method | "Explain Anyway" always available — Socratic mode is an offer |
+| Cultural bias of Socratic method | "Explain Anyway" always available : Socratic mode is an offer |
 | Algorithm black box | Transparency toggle: *"Why is Episteme doing this?"* shows full state |
 | Data privacy | Session data belongs to user · export at any time · deletion on request |
 
 ### What AI Can and Cannot Replace
 
-Episteme does not claim to replace a human tutor. It claims to do one specific thing a human tutor does: *push back on surface understanding.* The 5-minute feedback session where a mentor says "but why?" — that is what Episteme provides at scale, for free, in any language, at any hour.
+Episteme does not claim to replace a human tutor. It claims to do one specific thing a human tutor does: *push back on surface understanding.* The 5-minute feedback session where a mentor says "but why?" : that is what Episteme provides at scale, for free, in any language, at any hour.
 
-The mentor-student relationship, the encouragement, the shared humanity — those remain irreplaceable. Episteme knows this. The design reflects it.
+The mentor-student relationship, the encouragement, the shared humanity : those remain irreplaceable. Episteme knows this. The design reflects it.
 
 ---
 
@@ -830,25 +830,25 @@ The mentor-student relationship, the encouragement, the shared humanity — thos
 
 After 10 Episteme sessions, a learner's **Bloom's depth distribution** should shift measurably. Baseline: predominantly SURFACE. Target: predominantly CONCEPTUAL-to-ANALYTICAL with SYNTHESIS emerging.
 
-This is trackable. The BKT mastery curve per concept is stored. The depth distribution per session is computable. Impact is not assumed — it is measured.
+This is trackable. The BKT mastery curve per concept is stored. The depth distribution per session is computable. Impact is not assumed : it is measured.
 
 ### Scale Path
 
 ```
-Phase 1 — Launch (now)
+Phase 1 : Launch (now)
   English · 5 domains · Browser-based · Free
   
-Phase 2 — Vernacular (3 months)
+Phase 2 : Vernacular (3 months)
   Hindi · Tamil · Bengali
-  No model retraining — prompt layer only
+  No model retraining : prompt layer only
   Targets: GATE aspirants, engineering colleges in Tier-2 cities
   
-Phase 3 — B2B (6 months)
+Phase 3 : B2B (6 months)
   Coaching institutes: Physics Wallah, Unacademy, Allen
   Teacher dashboard: class-wide clarity heatmaps · Bloom distribution per student
   API: embed Episteme into any learning platform
   
-Phase 4 — Curriculum Integration (12 months)
+Phase 4 : Curriculum Integration (12 months)
   LMS plugins: Moodle, Canvas, Coursera
   Prerequisite graph feeds into adaptive curriculum sequencing
   Assessment replacement: clarity score + BKT mastery as formative grade
@@ -940,7 +940,7 @@ vercel --prod   # deploy to Vercel
 ## `15 // ROADMAP`
 
 ```
-SHIPPED — April 27, 2026
+SHIPPED : April 27, 2026
   ✓ 7-algorithm Socratic engine
   ✓ Bayesian Knowledge Tracing per turn
   ✓ Concept prerequisite graph
@@ -950,19 +950,19 @@ SHIPPED — April 27, 2026
   ✓ Session replay timeline
   ✓ Export: MD · PDF · Notion
 
-Q2 2026 — Learning Persistence
-  ○ Cross-session memory — learner fingerprint evolves over time
+Q2 2026 : Learning Persistence
+  ○ Cross-session memory : learner fingerprint evolves over time
   ○ Personalised Ebbinghaus curve from actual forgetting data
-  ○ Item Response Theory — concept difficulty calibration
+  ○ Item Response Theory : concept difficulty calibration
   ○ Zone of Proximal Development detector
 
-Q3 2026 — Vernacular & Access
+Q3 2026 : Vernacular & Access
   ○ Hindi, Tamil, Bengali Socratic dialogue
   ○ Low-bandwidth mode (text-only, reduced API calls)
   ○ Mobile app (React Native)
   ○ Offline-capable with cached concept graphs
 
-Q4 2026 — Platform & Scale
+Q4 2026 : Platform & Scale
   ○ Teacher dashboard: class-wide BKT heatmaps
   ○ LMS plugins: Moodle, Canvas
   ○ Coaching institute API
@@ -992,7 +992,7 @@ Episteme is grounded in peer-reviewed literature. Every algorithm traces to a sp
 
 <div align="center">
 
-<!-- REPLACE WITH CANVA: Closing banner — amber text "EPISTEME" on void background,
+<!-- REPLACE WITH CANVA: Closing banner : amber text "EPISTEME" on void background,
      with the tagline below in muted warm white. Amber phosphor glow.
      Dimensions: 1280×300px -->
 
@@ -1006,7 +1006,7 @@ Episteme is grounded in peer-reviewed literature. Every algorithm traces to a sp
 
 **Built with** [Anthropic Claude](https://anthropic.com) · [Next.js](https://nextjs.org) · [Supabase](https://supabase.com) · [Vercel](https://vercel.com)
 
-**CBC Spring 2026 Global Hackathon** · Track 3 — Economic Empowerment & Education  
+**CBC Spring 2026 Global Hackathon** · Track 3 : Economic Empowerment & Education  
 *78 universities · 12 countries · Inspired by "Machines of Loving Grace"*
 
 <br/>
