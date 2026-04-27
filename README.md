@@ -1,33 +1,24 @@
 <div align="center">
 
-<!-- REPLACE WITH CANVA: Full-width banner : deep amber-on-void wordmark "EPISTEME" in Space Grotesk 600, 
-     with a single amber phosphor glow behind the letter E. Dimensions: 1280×400px -->
+<img src="banner.png" alt="Episteme banner" width="100%" />
 
-```
-╔══════════════════════════════════════════════════════════════════════╗
-║                                                                      ║
-║   ███████╗██████╗ ██╗███████╗████████╗███████╗███╗   ███╗███████╗   ║
-║   ██╔════╝██╔══██╗██║██╔════╝╚══██╔══╝██╔════╝████╗ ████║██╔════╝   ║
-║   █████╗  ██████╔╝██║███████╗   ██║   █████╗  ██╔████╔██║█████╗     ║
-║   ██╔══╝  ██╔═══╝ ██║╚════██║   ██║   ██╔══╝  ██║╚██╔╝██║██╔══╝     ║
-║   ███████╗██║     ██║███████║   ██║   ███████╗██║ ╚═╝ ██║███████╗   ║
-║   ╚══════╝╚═╝     ╚═╝╚══════╝   ╚═╝   ╚══════╝╚═╝     ╚═╝╚══════╝   ║
-║                                                                      ║
-║              T H E   S O C R A T I C   S T U D Y   E N G I N E      ║
-║                                                                      ║
-╚══════════════════════════════════════════════════════════════════════╝
-```
-
-**AI that refuses to answer your questions :**  
-**and instead helps you answer them yourself.**
 
 <br/>
+
+<div align="justify">
+
+
+> **AI that refuses to answer your questions,** 
+> **and instead helps you answer them yourself.**  
+> **AI that refuses to answer your questions**  
+> **and instead helps you answer them yourself.**
+
+</div>
 
 [![Live Demo](https://img.shields.io/badge/episteme-chat.vercel.app-FFB000?style=for-the-badge&labelColor=191209&color=FFB000)](https://episteme.vercel.app)
 [![Next.js](https://img.shields.io/badge/NEXT.JS_15-App_Router-white?style=for-the-badge&labelColor=191209)](https://nextjs.org)
 [![Claude](https://img.shields.io/badge/CLAUDE-Sonnet_4-FFB000?style=for-the-badge&labelColor=191209)](https://anthropic.com)
 [![Supabase](https://img.shields.io/badge/SUPABASE-PostgreSQL-3ECF8E?style=for-the-badge&labelColor=191209)](https://supabase.com)
-[![Vercel](https://img.shields.io/badge/DEPLOYED-Vercel_Edge-white?style=for-the-badge&labelColor=191209)](https://vercel.com)
 
 <br/>
 

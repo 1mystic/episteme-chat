@@ -1,22 +1,6 @@
 <div align="center">
 
-<!-- REPLACE WITH CANVA: Full-width banner — deep amber-on-void wordmark "EPISTEME" in Space Grotesk 600, 
-     with a single amber phosphor glow behind the letter E. Dimensions: 1280×400px -->
-
-```
-╔══════════════════════════════════════════════════════════════════════╗
-║                                                                      ║
-║   ███████╗██████╗ ██╗███████╗████████╗███████╗███╗   ███╗███████╗   ║
-║   ██╔════╝██╔══██╗██║██╔════╝╚══██╔══╝██╔════╝████╗ ████║██╔════╝   ║
-║   █████╗  ██████╔╝██║███████╗   ██║   █████╗  ██╔████╔██║█████╗     ║
-║   ██╔══╝  ██╔═══╝ ██║╚════██║   ██║   ██╔══╝  ██║╚██╔╝██║██╔══╝     ║
-║   ███████╗██║     ██║███████║   ██║   ███████╗██║ ╚═╝ ██║███████╗   ║
-║   ╚══════╝╚═╝     ╚═╝╚══════╝   ╚═╝   ╚══════╝╚═╝     ╚═╝╚══════╝   ║
-║                                                                      ║
-║              T H E   S O C R A T I C   S T U D Y   E N G I N E      ║
-║                                                                      ║
-╚══════════════════════════════════════════════════════════════════════╝
-```
+<img src="banner.png" alt="Episteme banner" width="100%" />
 
 **AI that refuses to answer your questions —**  
 **and instead helps you answer them yourself.**
