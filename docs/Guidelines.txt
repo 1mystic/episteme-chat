@@ -1,0 +1,396 @@
+##### PARTICIPANT HANDBOOK
+
+# Anthropic Hackathon
+
+##### Claude Builder Club · April 27, 2026
+
+##### Online · 24-Hour Hackathon
+
+```
+"Inspired by Dario Amodei's essay Machines of Loving Grace — a vision where AI
+compresses decades of progress in medicine, mental health, economic access, and human
+meaning. Twenty-four hours to build a piece of that future."
+```
+```
+1st Place $700 API Credits + Certificate
+```
+```
+2nd Place $500 API Credits + Certificate
+```
+```
+3rd Place $300 API Credits + Certificate
+```
+CBC Spring 2026 Global Hackathon · 78 universities · 12 countries · one theme
+
+
+## Contents
+
+1 Overview
+
+2 The Five Tracks
+
+2.1 Track 1 — Biology & Physical Health
+
+2.2 Track 2 — Neuroscience & Mental Health
+
+2.3 Track 3 — Economic Empowerment & Education
+
+2.4 Track 4 — Governance & Collaboration
+
+2.5 Track 5 — Creative Flourishing
+
+3 Schedule & Phases
+
+4 Prizes & Credits
+
+5 Judging Criteria
+
+6 Resources
+
+
+## 1. Overview
+
+This hackathon is organized by Claude Builder Club — part of the CBC Spring 2026 Global
+Hackathon spanning 78 universities across 12 countries. You don't need prior experience
+or domain knowledge — just bring curiosity and the willingness to build.
+
+Over 24 hours online, you will form a team, choose a track focused on real social
+impact, and build a practical AI-powered solution. We're looking for tools that solve
+specific problems for specific people — whether in health, education, mental wellbeing,
+governance, or creative expression.
+
+You'll collaborate asynchronously, use Claude as your primary build partner, and have
+something real to show at the end. The best builds will represent our campus on the
+global stage.
+
+```
+THIS EVENT IS OPEN TO ALL REGISTERED CBC MEMBERS
+```
+## 2. The Five Tracks
+
+Pick one track. Your project will be judged within that track. Choose the track that
+best fits the problem you want to solve.
+
+###### 2.1 TRACK 1 — BIOLOGY & PHYSICAL HEALTH
+
+The problem:
+Your doctor sees your vitals once a year. Your fitness app sees your workouts. Your
+wearable sees your sleep. None of them talk to each other. No platform today has a
+complete view of a person's health.
+
+Examples:
+Unified health intelligence system · Cross-signal correlations · Personalised risk modelling ·
+Health history aggregator
+
+Key ethical question:
+What data is genuinely necessary versus noise — and what is the best way to make
+longitudinal health data explainable?
+
+###### 2.2 TRACK 2 — NEUROSCIENCE & MENTAL HEALTH
+
+The problem:
+There aren't enough therapists. Stigma prevents people from seeking help. Quality care
+is gatekept by insurance, geography, and language. Many people suffer without
+understanding what's happening to them.
+
+Examples:
+Evidence-based therapeutic support · Mental health literacy · Burnout prevention · Peer support
+facilitation · Tools for recognising when professional help is needed
+
+Key ethical question:
+What can AI therapy do, and what can it absolutely not replace?
+
+
+###### 2.3 TRACK 3 — ECONOMIC EMPOWERMENT & EDUCATION
+
+The problem:
+Talent is universal. Access to quality education and economic advancement is not.
+Geography, wealth, and language lock people out of opportunity.
+
+Examples:
+Adaptive tutoring · Career transition guidance · Financial literacy · Job interview prep ·
+Scholarship matching · Practical language learning
+
+Key ethical question:
+Who gets excluded by your design — by tech requirements, literacy level, or cultural
+assumption?
+
+###### 2.4 TRACK 4 — GOVERNANCE & COLLABORATION
+
+The problem:
+Democratic institutions are strained. Polarisation makes dialogue difficult. Civic
+participation is down. Communities can't coordinate around shared challenges.
+
+Examples:
+Community deliberation platforms · Policy explanation tools · Legislative transparency ·
+Grassroots organising · Conflict mediation
+
+Key ethical question:
+How could your tool be weaponised for manipulation? What's your safeguard?
+
+###### 2.5 TRACK 5 — CREATIVE FLOURISHING
+
+The problem:
+As AI handles routine work, questions about human purpose become urgent. Access to
+creative development is unequal. People who could find meaning through creative
+expression often don't get the chance.
+
+Examples:
+Community storytelling platforms · Music/art education with real-time feedback · Writing
+development tools · Language preservation · Intergenerational knowledge exchange
+
+Key ethical question:
+Is your tool keeping humans as creators, or quietly replacing them?
+
+
+## 3. Schedule & Phases
+
+TIMELINE
+
+```
+TIME ACTIVITY
+```
+```
+T+0:00 – 0:30 Doors open · Networking · Form your team
+```
+```
+T+0:30 – 1:00 Track selection window — 30-minute strategic pick
+```
+```
+T+1:00 Hackathon officially begins
+```
+```
+T+22:00 Submission deadline (no penalty)
+```
+```
+T+22:00 – 23:00 Late window — penalty applies per 10 min
+```
+```
+T+23:00 Submission form closes absolutely
+```
+```
+T+23:00 – 24:00 Judges finalise scores
+```
+```
+T+24:00+ Finalist pitches & Award ceremony
+```
+###### PHASE 1 — NETWORKING & TEAM FORMATION (T+0:00 – 0:30)
+
+```
+s This is your only structured window to find teammates. Use the CBC group to
+connect, share the problem you want to solve, and find people who complement your
+skills.
+s Teams can be 1 to 4 members. Each person may be on one team only.
+s Every team — including pre-formed ones — must register via the form before the
+window closes.
+s No new team registrations accepted after T+0:30. Unregistered teams are ineligible
+for judging or prizes.
+```
+###### PHASE 2 — STRATEGIC TRACK SELECTION (T+0:30 – 1:00)
+
+```
+s Since prizes are awarded both overall and track-wise, the track you choose affects
+your chances.
+s Organisers will share current track preferences of every registered team so you
+can gauge competition density.
+s Submit your final track choice via the form before the window closes. If no update
+is submitted, your initial preference stands.
+s Track selections are locked at T+1:00 and cannot be changed.
+```
+
+###### PHASE 3 — 24-HOUR BUILD (T+1:00 – T+22:00)
+
+```
+s The hackathon officially begins. Build a working solution within your chosen
+track.
+s Start with the user, not the technology. Before writing any code, ask: who exactly
+are you building for, and what specific problem are you solving?
+s Build a working prototype — a mockup without real functionality will not be
+accepted.
+s Claude API credits will be shared with all registered teams. Use Claude as your
+primary AI partner.
+s If you face any issue, flag a volunteer immediately via the support channel.
+```
+###### PHASE 4 — SUBMISSION WINDOW (DEADLINE: T+22:00 · CUTOFF: T+23:00)
+
+Submit before T+22:00 to avoid any penalty. The submission link will be shared at
+hackathon start.
+
+###### SUBMISSION TIME PENALTY
+
+```
+By T+22:00 No penalty
+```
+```
+T+22:10 5% deducted
+```
+```
+T+22:20 10% deducted
+```
+```
+T+22:30 15% deducted
+```
+```
+T+22:40 20% deducted
+```
+```
+T+22:50 25% deducted
+```
+```
+After T+23:00 Form closes — no exceptions
+```
+###### PHASE 5 — FINALIST PITCHES & AWARD CEREMONY (T+24:00+)
+
+```
+s Shortlisted teams present live to judges and audience.
+s Format: 5 + 2 minutes. Five minutes to present, two minutes of Q&A; from mentors.
+s A live demo is required. Pitching order is randomly drawn live.
+s Non-finalist teams are eligible for special prizes — remain present until the
+ceremony ends.
+s Prizes announced across three categories: overall placement, track-wise, and
+special prizes.
+```
+
+## 4. Prizes & Credits
+
+All prizes are in Anthropic API credits. Credits are awarded per team and can be used
+across Anthropic's API for future projects, research, and builds.
+
+###### CATEGORY PRIZE DESCRIPTION
+
+```
+Overall Winner $700 API Credits
++ Certificate
+```
+```
+Highest aggregate score across all tracks
+```
+```
+1st Runner-up $500 API Credits
++ Certificate
+```
+```
+Second highest aggregate score
+```
+```
+2nd Runner-up $300 API Credits
++ Certificate
+```
+```
+Third highest aggregate score
+```
+```
+Track 1st Rank TBA Top scoring team within each track (one per track)
+```
+```
+Most Innovative TBA Most innovative concept — one per track
+```
+```
+Best UI/UX TBA Most polished and user-centred design
+```
+```
+Best Evaluator TBA Team whose score predictions are closest to result
+```
+A team can win both a placement prize and a track prize. All special prizes are open regardless of
+Round 2 selection. ECA certificates will be provided to all winning candidates.
+
+
+#### Anthropic Hackathon · Claude Builder Club · April 27, 2026 Page 8
+
+### 5. Judging Criteria
+
+##### Every project is scored out of 100 points across four dimensions.
+
+##### IMPACT POTENTIAL 25 PTS
+
+```
+21 – 25 Addresses a specific, meaningful problem with a clear population in mind. The benefit is immediately legible and
+the solution directly serves it.
+```
+```
+13 – 20 Addresses a real problem but the population or benefit is somewhat vague. The connection between solution
+and impact exists but needs sharpening.
+```
+```
+6 – 12 Problem is loosely defined or the solution doesn't clearly address it. Hard to tell who this is for or what changes
+for them.
+```
+```
+0 – 5 Problem is unclear or the solution has little connection to it.
+```
+##### TECHNICAL EXECUTION 30 PTS
+
+```
+25 – 30 Core functionality works and effectively demonstrates the idea. Uses AI in a way that feels purposeful — not
+bolted on. Demo is clear and impressive.
+```
+```
+16 – 24 Core functionality mostly works. AI is used adequately. Some gaps in the demo but the concept comes through.
+```
+```
+6 – 15 Significant gaps in functionality or the demo doesn't clearly show how it works. AI use feels superficial or
+incidental.
+```
+```
+0 – 5 Doesn't work or is a mockup only. Little evidence of meaningful technical implementation.
+```
+##### ETHICAL ALIGNMENT 25 PTS
+
+```
+21 – 25 Team clearly wrestled with ethical implications. Can speak to who might be harmed, what could go wrong, and
+what safeguards exist. Solution feels empowering.
+```
+```
+13 – 20 Team considered some ethical implications and has reasonable answers. Solution is broadly empowering even
+if not all risks are addressed.
+```
+```
+6 – 12 Ethical considerations feel like an afterthought. Team struggles to articulate potential harms or hasn't built
+meaningful safeguards.
+```
+```
+0 – 5 No meaningful ethical consideration. Solution risks disempowering or harming users with no acknowledgement.
+```
+##### PRESENTATION 20 PTS
+
+```
+17 – 20 Clear, confident explanation of the problem, solution, and impact. Demo shows the product working. Q&A;
+handled well.
+```
+```
+11 – 16 Covers the key points. Demo is functional. Team communicates the core idea clearly even if presentation has
+rough edges.
+```
+```
+5 – 10 Hard to follow or key pieces are missing. Demo is unclear or incomplete. Struggles to answer questions.
+```
+```
+0 – 4 Incoherent or incomplete. Can't demonstrate functionality or explain what they built.
+```
+```
+Powered by Anthropic · CBC Spring 2026 Global Hackathon
+```
+
+## 6. Resources
+
+###### RESOURCE LINK WHAT IT IS
+
+```
+Claude API Docs docs.anthropic.com Official Claude API reference and guides
+```
+```
+Hackathon Starter github.com/sahat/hackathon-starterNode.js boilerplate with auth and DB
+```
+```
+Hackathon Guide hackathon.guide Step-by-step participation guide
+```
+```
+Public APIs publicapis.dev 1400+ free public APIs for developers
+```
+```
+Free for Devs free-for.dev Free tiers and developer tools list
+```
+```
+Devpost devpost.com Platform for submissions and inspiration
+```
+Powered by Anthropic · CBC Spring 2026 Global Hackathon
