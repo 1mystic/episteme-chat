@@ -1,0 +1,831 @@
+'use client'
+
+// app/dashboard/page.tsx
+
+import { useState, useEffect, useCallback } from 'react'
+import { useRouter } from 'next/navigation'
+import { motion, AnimatePresence } from 'framer-motion'
+import Link from 'next/link'
+import { useAuth } from '@/hooks/useAuth'
+import { supabase } from '@/lib/supabase'
+
+// ── Types ──────────────────────────────────────────────────────────────────────
+
+interface Stats {
+  totalSessions: number
+  completedSessions: number
+  totalTurns: number
+  avgClarity: number
+  bestClarity: number
+}
+
+interface DomainStat {
+  domain: string
+  count: number
+}
+
+interface ClarityPoint {
+  sessionId: string
+  domain: string
+  clarity: number
+  createdAt: string
+}
+
+interface RecentSession {
+  id: string
+  domain: string
+  turns: number
+  clarity: number | null
+  isComplete: boolean
+  createdAt: string
+}
+
+interface RecentInsight {
+  sessionId: string
+  concept: string
+  insight: string
+  clarity: number
+  domain: string
+  createdAt: string
+}
+
+interface Badge {
+  id: string
+  title: string
+  description: string
+  icon: string
+  earned: boolean
+}
+
+interface DashboardData {
+  stats: Stats
+  domainStats: DomainStat[]
+  clarityHistory: ClarityPoint[]
+  recentSessions: RecentSession[]
+  recentInsights: RecentInsight[]
+  badges: Badge[]
+}
+
+// ── Constants ──────────────────────────────────────────────────────────────────
+
+const DOMAIN_LABELS: Record<string, string> = {
+  ml: 'Machine Learning',
+  statistics: 'Statistics',
+  economics: 'Economics',
+  cs: 'Computer Science',
+  general: 'General',
+}
+
+const DOMAIN_ICONS: Record<string, string> = {
+  ml: '⟡',
+  statistics: '∑',
+  economics: '◈',
+  cs: '⌥',
+  general: '◎',
+}
+
+// ── Helpers ────────────────────────────────────────────────────────────────────
+
+function formatDate(iso: string) {
+  const d = new Date(iso)
+  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+}
+
+function userInitial(email: string) {
+  return email.charAt(0).toUpperCase()
+}
+
+// ── Sub-components ─────────────────────────────────────────────────────────────
+
+function StatCard({ label, value, unit }: { label: string; value: number | string; unit?: string }) {
+  return (
+    <div
+      className="p-5 flex flex-col gap-3"
+      style={{ border: '1px solid rgba(255,255,255,0.08)', background: 'rgba(255,176,0,0.02)' }}
+    >
+      <p
+        className="font-grotesk uppercase tracking-[0.2em]"
+        style={{ fontSize: '9px', color: '#524533' }}
+      >
+        {label}
+      </p>
+      <div className="flex items-baseline gap-1.5">
+        <span
+          className="font-grotesk font-semibold tabular-nums"
+          style={{ fontSize: '32px', lineHeight: 1, color: '#FFB000', letterSpacing: '-0.03em' }}
+        >
+          {value}
+        </span>
+        {unit && (
+          <span className="font-grotesk" style={{ fontSize: '11px', color: '#524533' }}>
+            {unit}
+          </span>
+        )}
+      </div>
+    </div>
+  )
+}
+
+function ClarityChart({ history }: { history: ClarityPoint[] }) {
+  if (history.length < 2) {
+    return (
+      <div
+        className="flex items-center justify-center h-full"
+        style={{ height: '120px', background: 'rgba(255,255,255,0.01)', border: '1px dashed rgba(255,255,255,0.06)' }}
+      >
+        <p className="font-grotesk" style={{ fontSize: '11px', color: '#524533' }}>
+          Complete 2+ sessions to see your trend
+        </p>
+      </div>
+    )
+  }
+
+  const W = 400
+  const H = 100
+  const pad = { l: 32, r: 12, t: 10, b: 24 }
+  const inner = { w: W - pad.l - pad.r, h: H - pad.t - pad.b }
+
+  const points = history.map((p, i) => {
+    const x = pad.l + (i / (history.length - 1)) * inner.w
+    const y = pad.t + inner.h - (p.clarity / 100) * inner.h
+    return { x, y, ...p }
+  })
+
+  const polyline = points.map((p) => `${p.x},${p.y}`).join(' ')
+  const area = [
+    `M ${points[0].x},${pad.t + inner.h}`,
+    ...points.map((p) => `L ${p.x},${p.y}`),
+    `L ${points[points.length - 1].x},${pad.t + inner.h}`,
+    'Z',
+  ].join(' ')
+
+  const yLabels = [0, 25, 50, 75, 100]
+
+  return (
+    <svg width="100%" height={H} viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none">
+      <defs>
+        <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#FFB000" stopOpacity="0.18" />
+          <stop offset="100%" stopColor="#FFB000" stopOpacity="0" />
+        </linearGradient>
+      </defs>
+      {/* Grid lines */}
+      {yLabels.map((v) => {
+        const y = pad.t + inner.h - (v / 100) * inner.h
+        return (
+          <g key={v}>
+            <line x1={pad.l} y1={y} x2={W - pad.r} y2={y} stroke="rgba(255,255,255,0.04)" strokeWidth="1" />
+            <text x={pad.l - 4} y={y + 3} textAnchor="end" fill="#524533" fontSize="7" fontFamily="'Space Grotesk', sans-serif">{v}</text>
+          </g>
+        )
+      })}
+      {/* Area fill */}
+      <path d={area} fill="url(#chartGrad)" />
+      {/* Line */}
+      <polyline points={polyline} fill="none" stroke="#FFB000" strokeWidth="1.5" strokeOpacity="0.7" />
+      {/* Dots */}
+      {points.map((p, i) => (
+        <circle key={i} cx={p.x} cy={p.y} r="3" fill="#FFB000" />
+      ))}
+    </svg>
+  )
+}
+
+function SidebarNav({
+  user,
+  signOut,
+  onNewSession,
+  newSessionLoading,
+}: {
+  user: { email?: string | null }
+  signOut: () => void
+  onNewSession: () => void
+  newSessionLoading: boolean
+}) {
+  return (
+    <aside
+      className="flex flex-col flex-shrink-0 h-full"
+      style={{
+        width: '240px',
+        background: '#08090A',
+        borderRight: '1px solid rgba(255,255,255,0.08)',
+      }}
+    >
+      {/* Logo */}
+      <div
+        className="px-6 pt-8 pb-6 flex-shrink-0"
+        style={{ borderBottom: '1px solid rgba(255,255,255,0.06)' }}
+      >
+        <Link
+          href="/"
+          className="font-grotesk font-semibold tracking-[0.28em] uppercase transition-opacity hover:opacity-70"
+          style={{ fontSize: '13px', color: '#FFB000' }}
+        >
+          EPISTEME
+        </Link>
+        <p className="font-grotesk mt-1" style={{ fontSize: '10px', color: '#524533', letterSpacing: '0.06em' }}>
+          // Learning OS
+        </p>
+      </div>
+
+      {/* Nav */}
+      <nav className="flex flex-col gap-1 px-3 py-6 flex-shrink-0">
+        {/* Dashboard (current) */}
+        <div
+          className="flex items-center gap-3 px-3 py-2.5"
+          style={{
+            background: 'rgba(255,176,0,0.08)',
+            borderLeft: '2px solid #FFB000',
+          }}
+        >
+          <span style={{ fontSize: '14px', color: '#FFB000' }}>◈</span>
+          <span
+            className="font-grotesk font-semibold uppercase tracking-[0.14em]"
+            style={{ fontSize: '11px', color: '#FFB000' }}
+          >
+            Dashboard
+          </span>
+        </div>
+
+        {/* New Session button */}
+        <button
+          onClick={onNewSession}
+          disabled={newSessionLoading}
+          className="flex items-center gap-3 px-3 py-2.5 w-full text-left transition-all duration-150 disabled:opacity-40"
+          style={{ borderLeft: '2px solid transparent' }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = 'rgba(255,255,255,0.03)'
+            e.currentTarget.style.borderLeftColor = 'rgba(255,176,0,0.3)'
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = 'transparent'
+            e.currentTarget.style.borderLeftColor = 'transparent'
+          }}
+        >
+          <span style={{ fontSize: '14px', color: '#9f8e78' }}>⟡</span>
+          <span
+            className="font-grotesk uppercase tracking-[0.14em]"
+            style={{ fontSize: '11px', color: '#9f8e78' }}
+          >
+            {newSessionLoading ? 'Starting...' : 'New Session'}
+          </span>
+        </button>
+      </nav>
+
+      {/* Spacer */}
+      <div className="flex-1" />
+
+      {/* User profile + logout */}
+      <div
+        className="px-4 py-5 flex-shrink-0"
+        style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}
+      >
+        <div className="flex items-center gap-3 mb-4">
+          <div
+            className="font-grotesk font-semibold flex-shrink-0 flex items-center justify-center"
+            style={{
+              width: '32px',
+              height: '32px',
+              background: 'rgba(255,176,0,0.12)',
+              border: '1px solid rgba(255,176,0,0.3)',
+              fontSize: '14px',
+              color: '#FFB000',
+            }}
+          >
+            {userInitial(user.email ?? 'U')}
+          </div>
+          <div className="overflow-hidden">
+            <p
+              className="font-grotesk font-medium truncate"
+              style={{ fontSize: '12px', color: '#eee0d0' }}
+            >
+              {user.email}
+            </p>
+          </div>
+        </div>
+        <button
+          onClick={signOut}
+          className="w-full text-left font-grotesk uppercase tracking-[0.16em] transition-colors py-1"
+          style={{ fontSize: '10px', color: '#524533' }}
+          onMouseEnter={(e) => { e.currentTarget.style.color = '#f87171' }}
+          onMouseLeave={(e) => { e.currentTarget.style.color = '#524533' }}
+        >
+          ← Logout
+        </button>
+      </div>
+    </aside>
+  )
+}
+
+// ── Main Component ─────────────────────────────────────────────────────────────
+
+export default function DashboardPage() {
+  const { user, loading: authLoading, signOut } = useAuth()
+  const router = useRouter()
+
+  const [data, setData] = useState<DashboardData | null>(null)
+  const [dataLoading, setDataLoading] = useState(true)
+  const [newSessionLoading, setNewSessionLoading] = useState(false)
+  const [newSessionDomain, setNewSessionDomain] = useState<string | null>(null)
+  const [error, setError] = useState<string | null>(null)
+
+  const fetchDashboard = useCallback(async () => {
+    const { data: { session } } = await supabase.auth.getSession()
+    if (!session?.access_token) return
+    try {
+      const res = await fetch('/api/dashboard', {
+        headers: { Authorization: `Bearer ${session.access_token}` },
+      })
+      if (!res.ok) throw new Error('Failed to load dashboard')
+      const json = await res.json() as DashboardData
+      setData(json)
+    } catch {
+      setError('Could not load dashboard data.')
+    } finally {
+      setDataLoading(false)
+    }
+  }, [])
+
+  useEffect(() => {
+    if (!authLoading && !user) {
+      router.replace('/login')
+      return
+    }
+    if (!authLoading && user) {
+      fetchDashboard()
+    }
+  }, [authLoading, user, router, fetchDashboard])
+
+  const handleNewSession = useCallback(async (domain = 'general') => {
+    setNewSessionLoading(true)
+    try {
+      const { data: { session } } = await supabase.auth.getSession()
+      const headers: Record<string, string> = { 'Content-Type': 'application/json' }
+      if (session?.access_token) headers['Authorization'] = `Bearer ${session.access_token}`
+      const res = await fetch('/api/session', { method: 'POST', headers, body: JSON.stringify({ domain }) })
+      const json = await res.json() as { session?: { id: string } }
+      if (json.session?.id) router.push(`/session/${json.session.id}`)
+    } catch {
+      setNewSessionLoading(false)
+    }
+  }, [router])
+
+  const handleDomainSession = (domain: string) => {
+    setNewSessionDomain(null)
+    handleNewSession(domain)
+  }
+
+  if (authLoading || (dataLoading && !error)) {
+    return (
+      <div
+        className="min-h-screen flex flex-col items-center justify-center gap-4"
+        style={{ background: '#08090A' }}
+      >
+        <motion.div
+          animate={{ scale: [0.8, 1.2, 0.8], opacity: [0.6, 1, 0.6] }}
+          transition={{ duration: 1.4, repeat: Infinity, ease: 'easeInOut' }}
+          style={{ width: '8px', height: '8px', background: '#FFB000', borderRadius: '50%' }}
+        />
+        <p className="font-grotesk tracking-[0.18em] uppercase" style={{ fontSize: '11px', color: '#9f8e78' }}>
+          Loading...
+        </p>
+      </div>
+    )
+  }
+
+  if (!user) return null
+
+  const stats = data?.stats ?? { totalSessions: 0, completedSessions: 0, totalTurns: 0, avgClarity: 0, bestClarity: 0 }
+
+  return (
+    <div className="flex h-screen overflow-hidden" style={{ background: '#08090A' }}>
+      {/* Sidebar */}
+      <SidebarNav
+        user={user}
+        signOut={signOut}
+        onNewSession={() => setNewSessionDomain('open')}
+        newSessionLoading={newSessionLoading}
+      />
+
+      {/* Main content */}
+      <main className="flex-1 overflow-y-auto">
+        {/* Header */}
+        <div
+          className="flex items-center justify-between px-8 flex-shrink-0 sticky top-0 z-10"
+          style={{
+            height: '56px',
+            borderBottom: '1px solid rgba(255,255,255,0.07)',
+            background: 'rgba(8,9,10,0.96)',
+          }}
+        >
+          <div className="flex items-center gap-3">
+            <span
+              className="font-grotesk font-semibold uppercase tracking-[0.2em]"
+              style={{ fontSize: '11px', color: '#FFB000' }}
+            >
+              Dashboard
+            </span>
+            <span style={{ color: 'rgba(255,255,255,0.12)', fontSize: '12px' }}>/</span>
+            <span className="font-grotesk" style={{ fontSize: '11px', color: '#524533' }}>
+              Overview
+            </span>
+          </div>
+          <button
+            onClick={() => setNewSessionDomain('open')}
+            disabled={newSessionLoading}
+            className="font-grotesk font-semibold uppercase tracking-[0.16em] px-5 py-2 transition-all duration-150 disabled:opacity-40"
+            style={{
+              fontSize: '10px',
+              color: '#08090A',
+              background: '#FFB000',
+              boxShadow: '0 0 20px rgba(255,176,0,0.2)',
+            }}
+          >
+            {newSessionLoading ? '...' : 'New Session →'}
+          </button>
+        </div>
+
+        <div className="px-8 py-8 space-y-8">
+          {error && (
+            <p className="font-grotesk" style={{ fontSize: '12px', color: '#f87171' }}>{error}</p>
+          )}
+
+          {/* ── Stats row ──────────────────────────────────────────────── */}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            className="grid grid-cols-2 md:grid-cols-4 gap-4"
+          >
+            <StatCard label="Total Sessions" value={stats.totalSessions} />
+            <StatCard label="Total Turns" value={stats.totalTurns} />
+            <StatCard label="Avg Clarity" value={stats.avgClarity} unit="/100" />
+            <StatCard label="Best Clarity" value={stats.bestClarity} unit="/100" />
+          </motion.div>
+
+          {/* ── Clarity trend + Badges ─────────────────────────────────── */}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.08 }}
+            className="grid grid-cols-1 lg:grid-cols-3 gap-4"
+          >
+            {/* Chart */}
+            <div
+              className="lg:col-span-2 p-6"
+              style={{ border: '1px solid rgba(255,255,255,0.08)' }}
+            >
+              <p
+                className="font-grotesk font-semibold uppercase tracking-[0.2em] mb-5"
+                style={{ fontSize: '10px', color: '#FFB000' }}
+              >
+                // CLARITY TREND
+              </p>
+              <ClarityChart history={data?.clarityHistory ?? []} />
+              <div
+                className="flex justify-between mt-3"
+                style={{ fontSize: '9px', color: '#524533', fontFamily: "'Space Grotesk', sans-serif' " }}
+              >
+                {data?.clarityHistory.slice(0, 7).map((_, i) => (
+                  <span key={i} className="font-grotesk">S{i + 1}</span>
+                ))}
+              </div>
+            </div>
+
+            {/* Badges */}
+            <div
+              className="p-6"
+              style={{ border: '1px solid rgba(255,255,255,0.08)' }}
+            >
+              <p
+                className="font-grotesk font-semibold uppercase tracking-[0.2em] mb-5"
+                style={{ fontSize: '10px', color: '#FFB000' }}
+              >
+                // ACHIEVEMENTS
+              </p>
+              <div className="flex flex-col gap-3">
+                {(data?.badges ?? []).map((badge) => (
+                  <div
+                    key={badge.id}
+                    className="flex items-center gap-3 py-2 px-3 transition-all duration-150"
+                    style={{
+                      background: badge.earned ? 'rgba(255,176,0,0.06)' : 'transparent',
+                      border: `1px solid ${badge.earned ? 'rgba(255,176,0,0.25)' : 'rgba(255,255,255,0.04)'}`,
+                      opacity: badge.earned ? 1 : 0.4,
+                    }}
+                  >
+                    <span style={{ fontSize: '16px', color: badge.earned ? '#FFB000' : '#524533', width: '20px' }}>
+                      {badge.icon}
+                    </span>
+                    <div>
+                      <p
+                        className="font-grotesk font-semibold"
+                        style={{ fontSize: '11px', color: badge.earned ? '#eee0d0' : '#524533' }}
+                      >
+                        {badge.title}
+                      </p>
+                      <p
+                        className="font-grotesk"
+                        style={{ fontSize: '9px', color: '#524533', letterSpacing: '0.04em' }}
+                      >
+                        {badge.description}
+                      </p>
+                    </div>
+                    {badge.earned && (
+                      <span
+                        className="ml-auto font-grotesk font-semibold"
+                        style={{ fontSize: '10px', color: '#FFB000' }}
+                      >
+                        ✓
+                      </span>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+
+          {/* ── Recent sessions ────────────────────────────────────────── */}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.16 }}
+            style={{ border: '1px solid rgba(255,255,255,0.08)' }}
+          >
+            <div
+              className="flex items-center justify-between px-6 py-4"
+              style={{ borderBottom: '1px solid rgba(255,255,255,0.06)' }}
+            >
+              <p
+                className="font-grotesk font-semibold uppercase tracking-[0.2em]"
+                style={{ fontSize: '10px', color: '#FFB000' }}
+              >
+                // RECENT SESSIONS
+              </p>
+              <span className="font-grotesk" style={{ fontSize: '10px', color: '#524533' }}>
+                {stats.totalSessions} total
+              </span>
+            </div>
+
+            {(!data?.recentSessions || data.recentSessions.length === 0) ? (
+              <div className="px-6 py-10 text-center">
+                <p className="font-grotesk" style={{ fontSize: '12px', color: '#524533' }}>
+                  No sessions yet. Start your first session →
+                </p>
+              </div>
+            ) : (
+              <div>
+                {/* Header row */}
+                <div
+                  className="grid grid-cols-12 px-6 py-2"
+                  style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}
+                >
+                  {['Domain', 'Date', 'Turns', 'Clarity', 'Status', ''].map((h) => (
+                    <span
+                      key={h}
+                      className={`font-grotesk uppercase tracking-[0.14em] ${h === 'Domain' ? 'col-span-3' : h === 'Date' ? 'col-span-3' : h === '' ? 'col-span-2 text-right' : 'col-span-2'}`}
+                      style={{ fontSize: '9px', color: '#524533' }}
+                    >
+                      {h}
+                    </span>
+                  ))}
+                </div>
+                {data.recentSessions.map((s, i) => (
+                  <motion.div
+                    key={s.id}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: i * 0.04 }}
+                  >
+                    <Link
+                      href={`/session/${s.id}`}
+                      className="grid grid-cols-12 px-6 py-3.5 items-center transition-all duration-150 cursor-pointer"
+                      style={{ borderBottom: '1px solid rgba(255,255,255,0.03)' }}
+                      onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(255,176,0,0.03)' }}
+                      onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent' }}
+                    >
+                      <div className="col-span-3 flex items-center gap-2">
+                        <span style={{ color: '#FFB000', fontSize: '13px' }}>{DOMAIN_ICONS[s.domain]}</span>
+                        <span className="font-grotesk font-medium" style={{ fontSize: '12px', color: '#d7c4ac' }}>
+                          {DOMAIN_LABELS[s.domain] ?? s.domain}
+                        </span>
+                      </div>
+                      <span className="col-span-3 font-grotesk" style={{ fontSize: '11px', color: '#9f8e78' }}>
+                        {formatDate(s.createdAt)}
+                      </span>
+                      <span className="col-span-2 font-grotesk tabular-nums" style={{ fontSize: '11px', color: '#9f8e78' }}>
+                        {s.turns}
+                      </span>
+                      <span
+                        className="col-span-2 font-grotesk font-semibold tabular-nums"
+                        style={{ fontSize: '12px', color: s.clarity !== null ? '#FFB000' : '#524533' }}
+                      >
+                        {s.clarity !== null ? `${s.clarity}/100` : '—'}
+                      </span>
+                      <span
+                        className="col-span-2 font-grotesk uppercase tracking-[0.12em]"
+                        style={{ fontSize: '9px', color: s.isComplete ? '#4ade80' : '#9f8e78' }}
+                      >
+                        {s.isComplete ? 'Complete' : 'Active'}
+                      </span>
+                      <span
+                        className="col-span-0 text-right font-grotesk"
+                        style={{ fontSize: '12px', color: '#524533' }}
+                      >
+                        →
+                      </span>
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
+            )}
+          </motion.div>
+
+          {/* ── Domain coverage + Recent insights ─────────────────────── */}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.24 }}
+            className="grid grid-cols-1 lg:grid-cols-5 gap-4"
+          >
+            {/* Domain coverage */}
+            <div
+              className="lg:col-span-2 p-6"
+              style={{ border: '1px solid rgba(255,255,255,0.08)' }}
+            >
+              <p
+                className="font-grotesk font-semibold uppercase tracking-[0.2em] mb-5"
+                style={{ fontSize: '10px', color: '#FFB000' }}
+              >
+                // DOMAIN COVERAGE
+              </p>
+              <div className="flex flex-col gap-4">
+                {(data?.domainStats ?? []).map((d) => {
+                  const pct = stats.totalSessions > 0 ? (d.count / stats.totalSessions) * 100 : 0
+                  return (
+                    <div key={d.domain}>
+                      <div className="flex items-center justify-between mb-1.5">
+                        <span className="flex items-center gap-2">
+                          <span style={{ color: '#FFB000', fontSize: '12px' }}>{DOMAIN_ICONS[d.domain]}</span>
+                          <span className="font-grotesk" style={{ fontSize: '11px', color: '#9f8e78' }}>
+                            {DOMAIN_LABELS[d.domain]}
+                          </span>
+                        </span>
+                        <span className="font-grotesk tabular-nums" style={{ fontSize: '10px', color: '#524533' }}>
+                          {d.count}
+                        </span>
+                      </div>
+                      <div style={{ height: '2px', background: 'rgba(255,255,255,0.05)' }}>
+                        <motion.div
+                          initial={{ width: 0 }}
+                          animate={{ width: `${pct}%` }}
+                          transition={{ duration: 0.6, delay: 0.3 }}
+                          style={{ height: '100%', background: d.count > 0 ? '#FFB000' : 'transparent' }}
+                        />
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+
+            {/* Recent insight cards */}
+            <div
+              className="lg:col-span-3 p-6"
+              style={{ border: '1px solid rgba(255,255,255,0.08)' }}
+            >
+              <p
+                className="font-grotesk font-semibold uppercase tracking-[0.2em] mb-5"
+                style={{ fontSize: '10px', color: '#FFB000' }}
+              >
+                // RECENT INSIGHTS
+              </p>
+              {(!data?.recentInsights || data.recentInsights.length === 0) ? (
+                <p className="font-grotesk" style={{ fontSize: '11px', color: '#524533' }}>
+                  Complete sessions to generate insight cards
+                </p>
+              ) : (
+                <div className="flex flex-col gap-4">
+                  {data.recentInsights.map((ins) => (
+                    <Link
+                      key={ins.sessionId}
+                      href={`/session/${ins.sessionId}`}
+                      className="block p-4 transition-all duration-150"
+                      style={{ border: '1px solid rgba(255,255,255,0.06)', background: 'rgba(255,176,0,0.02)' }}
+                      onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'rgba(255,176,0,0.2)' }}
+                      onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)' }}
+                    >
+                      <div className="flex items-start justify-between gap-3 mb-2">
+                        <span
+                          className="font-grotesk font-semibold"
+                          style={{ fontSize: '13px', color: '#eee0d0' }}
+                        >
+                          {ins.concept}
+                        </span>
+                        <span
+                          className="font-grotesk font-semibold tabular-nums flex-shrink-0"
+                          style={{ fontSize: '12px', color: '#FFB000' }}
+                        >
+                          {ins.clarity}/100
+                        </span>
+                      </div>
+                      <p
+                        className="font-grotesk"
+                        style={{
+                          fontSize: '11px',
+                          color: '#9f8e78',
+                          lineHeight: 1.5,
+                          display: '-webkit-box',
+                          WebkitLineClamp: 2,
+                          WebkitBoxOrient: 'vertical',
+                          overflow: 'hidden',
+                        }}
+                      >
+                        {ins.insight}
+                      </p>
+                      <div className="flex items-center gap-3 mt-2">
+                        <span style={{ fontSize: '10px', color: '#FFB000' }}>{DOMAIN_ICONS[ins.domain]}</span>
+                        <span className="font-grotesk" style={{ fontSize: '9px', color: '#524533' }}>
+                          {formatDate(ins.createdAt)}
+                        </span>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+          </motion.div>
+
+          {/* Bottom padding */}
+          <div style={{ height: '32px' }} />
+        </div>
+      </main>
+
+      {/* Domain picker modal */}
+      <AnimatePresence>
+        {newSessionDomain === 'open' && (
+          <>
+            <motion.div
+              key="backdrop"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-40"
+              style={{ background: 'rgba(8,9,10,0.85)' }}
+              onClick={() => setNewSessionDomain(null)}
+            />
+            <motion.div
+              key="modal"
+              initial={{ opacity: 0, scale: 0.95, y: 16 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 16 }}
+              transition={{ duration: 0.2 }}
+              className="fixed z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-md p-8"
+              style={{ background: '#191209', border: '1px solid rgba(255,176,0,0.2)' }}
+            >
+              <p
+                className="font-grotesk font-semibold uppercase tracking-[0.2em] mb-6"
+                style={{ fontSize: '11px', color: '#FFB000' }}
+              >
+                // Choose a domain
+              </p>
+              <div className="grid grid-cols-1 gap-2">
+                {Object.entries(DOMAIN_LABELS).map(([id, label]) => (
+                  <button
+                    key={id}
+                    onClick={() => handleDomainSession(id)}
+                    disabled={newSessionLoading}
+                    className="flex items-center gap-3 px-4 py-3 text-left transition-all duration-150 disabled:opacity-40"
+                    style={{ border: '1px solid rgba(255,255,255,0.08)', background: 'rgba(255,255,255,0.01)' }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.borderColor = 'rgba(255,176,0,0.3)'
+                      e.currentTarget.style.background = 'rgba(255,176,0,0.06)'
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)'
+                      e.currentTarget.style.background = 'rgba(255,255,255,0.01)'
+                    }}
+                  >
+                    <span style={{ fontSize: '18px', color: '#FFB000', width: '24px' }}>
+                      {DOMAIN_ICONS[id]}
+                    </span>
+                    <span className="font-grotesk font-medium" style={{ fontSize: '14px', color: '#d7c4ac' }}>
+                      {label}
+                    </span>
+                  </button>
+                ))}
+              </div>
+              <button
+                onClick={() => setNewSessionDomain(null)}
+                className="mt-5 font-grotesk uppercase tracking-[0.16em] transition-opacity hover:opacity-60"
+                style={{ fontSize: '10px', color: '#524533' }}
+              >
+                ← Cancel
+              </button>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+    </div>
+  )
+}
