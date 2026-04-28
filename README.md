@@ -8,10 +8,9 @@
 <div align="justify">
 
 
-> **AI that refuses to answer your questions,** 
+> **Socratic Study Engine AI that refuses to answer your questions,** 
 > **and instead helps you answer them yourself.**  
-> **AI that refuses to answer your questions**  
-> **and instead helps you answer them yourself.**
+
 
 </div>
 
