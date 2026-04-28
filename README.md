@@ -16,8 +16,7 @@
 
 <div align="justify">
 
-> **Socratic Study Engine AI that refuses to answer your questions,** 
-> **and instead helps you answer them yourself.**  
+> ### Socratic Study Engine AI that refuses to answer your questions,  and instead helps you answer them yourself. 
 
 </div>
 
