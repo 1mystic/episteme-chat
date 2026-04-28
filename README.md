@@ -4,12 +4,12 @@
 
 
 <br/>
-
 <div align="justify">
 
 
 > **Socratic Study Engine AI that refuses to answer your questions,** 
 > **and instead helps you answer them yourself.**  
+
 
 
 </div>
@@ -20,9 +20,6 @@
 [![Supabase](https://img.shields.io/badge/SUPABASE-PostgreSQL-3ECF8E?style=for-the-badge&labelColor=191209)](https://supabase.com)
 
 <br/>
-
-> *Built in 24 hours · CBC Spring 2026 Global Hackathon · Track 3: Economic Empowerment & Education*  
-> *78 universities · 12 countries · Themed on Dario Amodei's "Machines of Loving Grace"*
 
 </div>
 
