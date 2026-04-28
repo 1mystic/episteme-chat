@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="banner.png" alt="Episteme banner" width="100%" />
+<img src="assets/banner.png" alt="Episteme banner" width="100%" />
 
 
 
@@ -966,7 +966,7 @@ Episteme is grounded in peer-reviewed literature. Every algorithm traces to a sp
 
 <div align="center">
 
-<img src="footer.png" alt="Episteme footer" width="100%" />
+<img src="assets/footer.png" alt="Episteme footer" width="100%" />
 
 
 **Built with** [Anthropic Claude](https://anthropic.com) · [Next.js](https://nextjs.org) · [Supabase](https://supabase.com) · [Vercel](https://vercel.com)
