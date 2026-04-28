@@ -3,23 +3,21 @@
 <img src="banner.png" alt="Episteme banner" width="100%" />
 
 
-<br/>
-<div align="justify">
 
-
-> **Socratic Study Engine AI that refuses to answer your questions,** 
-> **and instead helps you answer them yourself.**  
-
-
-
-</div>
 
 [![Live Demo](https://img.shields.io/badge/episteme-chat.vercel.app-FFB000?style=for-the-badge&labelColor=191209&color=FFB000)](https://episteme.vercel.app)
 [![Next.js](https://img.shields.io/badge/NEXT.JS_15-App_Router-white?style=for-the-badge&labelColor=191209)](https://nextjs.org)
 [![Claude](https://img.shields.io/badge/CLAUDE-Sonnet_4-FFB000?style=for-the-badge&labelColor=191209)](https://anthropic.com)
 [![Supabase](https://img.shields.io/badge/SUPABASE-PostgreSQL-3ECF8E?style=for-the-badge&labelColor=191209)](https://supabase.com)
 
-<br/>
+</div>
+
+
+
+<div align="justify">
+
+> **Socratic Study Engine AI that refuses to answer your questions,** 
+> **and instead helps you answer them yourself.**  
 
 </div>
 
