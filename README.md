@@ -343,16 +343,16 @@ SM-2 review intervals:
                         ┌────────────────────────────────────┐
                         │           USER BROWSER             │
                         │  Next.js 15  ·  Framer Motion      │
-                        │  SSE streaming · Live algo signals  │
+                        │  SSE streaming · Live algo signals │
                         └──────────────┬─────────────────────┘
                                        │ HTTPS
                         ┌──────────────▼─────────────────────┐
-                        │         VERCEL EDGE (CDN)           │
-                        │   Global · Auto-scale · Zero-config │
-                        │                                     │
-                        │  /api/session   /api/classify       │
-                        │  /api/chat ──── SSE STREAM          │
-                        │  /api/insights  /api/export         │
+                        │         VERCEL EDGE (CDN)          │
+                        │   Global · Auto-scale · Zero-config│
+                        │                                    │
+                        │  /api/session   /api/classify      │
+                        │  /api/chat ──── SSE STREAM         │
+                        │  /api/insights  /api/export        │
                         │  /api/agent/reflect ◄───────────┐  │
                         └──────────────┬──────────────────┼──┘
                                        │                  │
@@ -375,12 +375,12 @@ SM-2 review intervals:
               └────────────────────────┬──────┘
                                        │
               ┌────────────────────────▼──────┐
-              │       SUPABASE POSTGRESQL      │
+              │       SUPABASE POSTGRESQL     │
               │                               │
-              │  sessions      messages        │
-              │  concepts      insight_cards   │
-              │  concept_nodes concept_edges   │
-              │  learner_profiles              │
+              │  sessions      messages       │
+              │  concepts      insight_cards  │
+              │  concept_nodes concept_edges  │
+              │  learner_profiles             │
               └───────────────────────────────┘
 ```
 
@@ -966,17 +966,8 @@ Episteme is grounded in peer-reviewed literature. Every algorithm traces to a sp
 
 <div align="center">
 
-<!-- REPLACE WITH CANVA: Closing banner : amber text "EPISTEME" on void background,
-     with the tagline below in muted warm white. Amber phosphor glow.
-     Dimensions: 1280×300px -->
+<img src="footer.png" alt="Episteme footer" width="100%" />
 
-```
-╔══════════════════════════════════════════════════════════╗
-║                                                          ║
-║    "The AI that celebrates making itself unnecessary."   ║
-║                                                          ║
-╚══════════════════════════════════════════════════════════╝
-```
 
 **Built with** [Anthropic Claude](https://anthropic.com) · [Next.js](https://nextjs.org) · [Supabase](https://supabase.com) · [Vercel](https://vercel.com)
 
