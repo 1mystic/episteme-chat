@@ -5,7 +5,7 @@
 
 
 
-[![Live Demo](https://img.shields.io/badge/episteme-chat.vercel.app-FFB000?style=for-the-badge&labelColor=191209&color=FFB000)](https://episteme.vercel.app)
+[![Live Demo](https://img.shields.io/badge/episteme-chat.vercel.app-FFB000?style=for-the-badge&labelColor=191209&color=FFB000)](https://episteme-chat.vercel.app)
 [![Next.js](https://img.shields.io/badge/NEXT.JS_15-App_Router-white?style=for-the-badge&labelColor=191209)](https://nextjs.org)
 [![Claude](https://img.shields.io/badge/CLAUDE-Sonnet_4-FFB000?style=for-the-badge&labelColor=191209)](https://anthropic.com)
 [![Supabase](https://img.shields.io/badge/SUPABASE-PostgreSQL-3ECF8E?style=for-the-badge&labelColor=191209)](https://supabase.com)
