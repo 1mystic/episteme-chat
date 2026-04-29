@@ -417,7 +417,7 @@ Every user message triggers this exact sequence before Claude speaks:
 
 ## `06 // VS PROMPT ENGINEERING`
 
-This is the question every judge will ask. *"Can't I just prompt Claude to be Socratic?"*
+This is the question everyone of you might've been asking: *"Can't I just prompt Claude to be Socratic?"*
 
 The answer is no. Here is why, precisely.
 
